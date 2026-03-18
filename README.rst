@@ -5,6 +5,8 @@ django-strong-passwords is a Django application that provides a form field and
 validators that check the strength of a password. It is a fork of django-passwords which
 adds support for modern versions of Django and Python.
 
+`PyPI <https://pypi.org/project/django-strong-passwords/>`_
+
 Installation
 ------------
 `pip install django-strong-passwords`
