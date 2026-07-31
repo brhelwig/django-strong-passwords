@@ -26,6 +26,13 @@ jobs:
           python-version: ${{ matrix.python-version }}
       - name: Install dependencies
         run: uv sync --group dev
+      - name: Identify interpreter
+        run: echo "PY=$(uv run python -VV | sha256sum | cut -d' ' -f1)" >> $GITHUB_ENV
+      - name: Cache pre-commit environments
+        uses: actions/cache@v6
+        with:
+          path: ~/.cache/pre-commit
+          key: pre-commit|${{ env.PY }}|${{ hashFiles('.pre-commit-config.yaml') }}
       - name: Run Pre-commit validations
         run: uv run pre-commit run --all-files
       - name: Install Django ${{ matrix.django-version }}
